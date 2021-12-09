@@ -1,45 +1,61 @@
 package commerce.tp;
 
+import java.util.ArrayList;
+
 public class Shop {
-    private String label;
-    private float buyingPrice;
-    private float sellingPrice;
-    private int stock;
-    private String description;
+    private float balance;
+    private ArrayList<Product> products;
 
-    public Shop(String label, float buyingPrice, float sellingPrice) {
-        this.label = label;
-        this.buyingPrice = buyingPrice;
-        this.sellingPrice = sellingPrice;
-        this.stock = 0;
-        this.description = "Pas de description";
+    public Shop() {
+        this(0,  new ArrayList<Product>());
     }
 
-    public String getLabel() {
-        return label;
+    public Shop(float balance) {
+        this(balance,  new ArrayList<Product>());
     }
 
-    public float getBuyingPrice() {
-        return buyingPrice;
+    public Shop(float balance, ArrayList<Product> products) {
+        this.balance = balance;
+        this.products = products;
     }
 
-    public float getSellingPrice() {
-        return sellingPrice;
+    public float getBalance() {
+        return balance;
     }
 
-    public int getStock() {
-        return stock;
+    public void displayBalance() {
+        System.out.println("\n[ Balance actuelle du magasin : " + this.balance + " € ]\n");
     }
 
-    public void setStock(int stock) {
-        this.stock = stock;
+    public void addProduct(String label, float buyingPrice, float sellingPrice) {
+        this.products.add(new Product(label, buyingPrice, sellingPrice));
     }
 
-    public String getDescription() {
-        return description;
+    public void buyProduct(int refProduct, int nbCopies) {
+        Product product = this.products.get(refProduct);
+        product.addToStock(nbCopies);
+        this.balance -= nbCopies * product.getBuyingPrice();
+        System.out.println("[ "
+                + nbCopies + " exemplaire(s) de "
+                + product.getLabel()
+                + " acheté(s) ]");
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void sellProduct(int refProduct, int nbCopies) {
+        Product product = this.products.get(refProduct);
+        product.removeFromStock(nbCopies);
+        this.balance += nbCopies * product.getSellingPrice();
+        System.out.println("[ "
+                + nbCopies + " exemplaire(s) de "
+                + product.getLabel()
+                + " vendu(s) ]");
+    }
+
+    public void displayStockProducts() {
+        System.out.println("\n[ Stock du magasin : ]");
+        this.products.forEach(product -> System.out.println(
+                product.getLabel()
+                        + " (" + product.getSellingPrice() + " €) : "
+                        + product.getStock() + " exemplaires"));
     }
 }
