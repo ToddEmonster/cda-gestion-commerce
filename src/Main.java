@@ -2,6 +2,10 @@ import commerce.tp.Shop;
 
 public class Main {
     public static void main(String[] args) {
+        testShop();
+    }
+
+    private static void testShop() {
         Shop gameShop = new Shop();
 
         gameShop.addProduct("Mysterium", 5F, 10F);
@@ -22,4 +26,6 @@ public class Main {
         gameShop.displayStockProducts();
         gameShop.displayBalance();
     }
+
+
 }
