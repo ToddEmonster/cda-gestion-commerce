@@ -7,7 +7,8 @@ public class Cd extends Product {
     private String interpreter;
     private ArrayList<String> tracks;
 
-    public Cd(String label, float buyingPrice, float sellingPrice, String author, String interpreter, ArrayList<String> tracks) {
+    public Cd(String label, float buyingPrice, float sellingPrice, String author, String interpreter,
+            ArrayList<String> tracks) {
         super(label, buyingPrice, sellingPrice);
         this.author = author;
         this.interpreter = interpreter;

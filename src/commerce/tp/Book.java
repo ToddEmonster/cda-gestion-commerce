@@ -17,4 +17,5 @@ public class Book extends Product {
     public String getEditor() {
         return editor;
     }
+
 }

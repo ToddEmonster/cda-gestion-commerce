@@ -31,6 +31,15 @@ public class Shop {
         this.products.add(new Product(label, buyingPrice, sellingPrice));
     }
 
+    public void addBook(String label, float buyingPrice, float sellingPrice, String author, String editor) {
+        this.products.add(new Book(label, buyingPrice, sellingPrice, author, editor));
+    }
+
+    public void addCd(String label, float buyingPrice, float sellingPrice, String author, String interpreter,
+            ArrayList<String> tracks) {
+        this.products.add(new Cd(label, buyingPrice, sellingPrice, author, interpreter, tracks));
+    }
+
     public void buyProduct(int refProduct, int nbCopies) {
         Product product = this.products.get(refProduct);
         product.addToStock(nbCopies);
